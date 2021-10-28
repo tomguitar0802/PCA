@@ -28,7 +28,7 @@ if Path is not None:
         plt.scatter(X,Y)
         for i,(annot_x,annot_y) in enumerate(zip(X,Y)):
             plt.annotate(df.index[i],((annot_x,annot_y)))
-        plt.xlabel("第一主成分",fontname="MS Gothic")
+        plt.xlabel("第一主成分")
         plt.ylabel("第二主成分")
         st.pyplot(fig)
 

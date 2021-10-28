@@ -7,7 +7,6 @@ from sklearn.decomposition import TruncatedSVD
 import streamlit as st
 
 fig,ax=plt.subplots()
-sns.plt.plot([0,1],[0,1])
 sns.plt.title("日本語")
 st.pyplot(fig)
 

@@ -5,3 +5,4 @@ sklearn
 xlrd
 openpyxl
 japanize_matplotlib
+seaborn

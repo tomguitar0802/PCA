@@ -6,10 +6,6 @@ sns.set(font="Meiryo")
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
 
-fig,ax=plt.subplots()
-sns.plt.title("日本語")
-st.pyplot(fig)
-
 Path=st.sidebar.file_uploader('Excel')
 
 if Path is not None:

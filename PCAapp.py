@@ -20,7 +20,6 @@ if Path is not None:
     st.dataframe(pd.DataFrame(model_svd.components_,columns=df.columns,index=i_list))
 
     if N==2:
-        plt.rcParams['font.family'] = 'Meiryo'
         fig,ax=plt.subplots()
         X=vecs_list[:,0]
         Y=vecs_list[:,1]
@@ -31,7 +30,6 @@ if Path is not None:
         plt.ylabel("第二主成分")
         st.pyplot(fig)
 
-        plt.rcParams['font.family'] = 'Meiryo'
         fig,ax=plt.subplots()
         X_comp,Y_comp=model_svd.components_
         plt.scatter(X_comp,Y_comp)

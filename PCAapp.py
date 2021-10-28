@@ -1,6 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-plt.rc('font', family='BIZ UDGothic')
+plt.rcParams['font.family'] = 'Meiryo'
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
 

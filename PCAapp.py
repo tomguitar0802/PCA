@@ -1,8 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import japanize_matplotlib
+import seaborn as sns
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
+sns.set(font="IPAexGothic")
 
 Path=st.sidebar.file_uploader('Excel')
 

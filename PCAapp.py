@@ -1,8 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-plt.rcParams['font.family'] = 'Meiryo'
-import seaborn as sns
-sns.set(font="Meiryo")
+import japanize_matplotlib
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
 

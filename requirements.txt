@@ -4,4 +4,4 @@ matplotlib
 sklearn
 xlrd
 openpyxl
-seaborn
+japanize_matplotlib

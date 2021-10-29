@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d.axes3d import Axes3D
 import seaborn as sns
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
-sns.set(font='IPAexGothic')
+sns.set(font="IPAexGothic")
 Path=st.sidebar.file_uploader('Excel')
 if Path is not None:
     df=pd.read_excel(Path,index_col=0)

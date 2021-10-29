@@ -6,7 +6,8 @@ import japanize_matplotlib
 import seaborn as sns
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
-sns.set(font="IPAexGothic")
+sns.set(font='IPAexGothic')
+japanize_matplotlib.japanize()
 
 Path=st.sidebar.file_uploader('Excel')
 
@@ -27,7 +28,6 @@ if Path is not None:
     st.dataframe(pd.DataFrame(model_svd.components_,columns=df.columns,index=i_list))
 
     if MODE=="2D":
-        sns.set(font="IPAexGothic")
         select1=st.sidebar.selectbox("x軸",np.arange(1,N+1),0)
         select2=st.sidebar.selectbox("y軸",np.arange(1,N+1),1)
         fig,ax=plt.subplots()
@@ -51,7 +51,6 @@ if Path is not None:
         st.pyplot(fig)
     
     if MODE=="3D":
-        sns.set(font="IPAexGothic")
         select1=st.sidebar.selectbox("x軸",np.arange(1,N+1),0)
         select2=st.sidebar.selectbox("y軸",np.arange(1,N+1),1)
         select3=st.sidebar.selectbox("z軸",np.arange(1,N+1),2)
@@ -85,7 +84,6 @@ if Path is not None:
         ax.set_zlabel("Z")
         st.pyplot(fig)
 
-    sns.set(font="IPAexGothic")
     X=[]
     Y=[]
     fig,ax=plt.subplots()

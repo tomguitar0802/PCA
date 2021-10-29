@@ -11,7 +11,7 @@ sns.set(font="IPAexGothic")
 Path=st.sidebar.file_uploader('Excel')
 
 if Path is not None:
-    sns.set(font="IPAexGothic")
+    
     df=pd.read_excel(Path,index_col=0)
     N=st.sidebar.slider("主要素数",3,len(df.columns)-1,3,1)
     c_list=[]
@@ -27,6 +27,7 @@ if Path is not None:
     st.dataframe(pd.DataFrame(model_svd.components_,columns=df.columns,index=i_list))
 
     if MODE=="2D":
+        sns.set(font="IPAexGothic")
         select1=st.sidebar.selectbox("x軸",np.arange(1,N+1),0)
         select2=st.sidebar.selectbox("y軸",np.arange(1,N+1),1)
         fig,ax=plt.subplots()
@@ -50,40 +51,41 @@ if Path is not None:
         st.pyplot(fig)
     
     if MODE=="3D":
-            select1=st.sidebar.selectbox("x軸",np.arange(1,N+1),0)
-            select2=st.sidebar.selectbox("y軸",np.arange(1,N+1),1)
-            select3=st.sidebar.selectbox("z軸",np.arange(1,N+1),2)
-            fig=plt.figure()
-            ax=fig.add_subplot(projection="3d")
-            X=vecs_list[:,select1-1]
-            Y=vecs_list[:,select2-1]
-            Z=vecs_list[:,select3-1]
-            ax.scatter(X,Y,Z)
-            """
-            for i,(annot_x,annot_y,annot_z) in enumerate(zip(X,Y,Z)):
-                ax.annotate(df.index[i],((annot_x,annot_y,annot_z)))
-            """
-            ax.set_xlabel("X")
-            ax.set_ylabel("Y")
-            ax.set_zlabel("Z")
-            st.pyplot(fig)
+        sns.set(font="IPAexGothic")
+        select1=st.sidebar.selectbox("x軸",np.arange(1,N+1),0)
+        select2=st.sidebar.selectbox("y軸",np.arange(1,N+1),1)
+        select3=st.sidebar.selectbox("z軸",np.arange(1,N+1),2)
+        fig=plt.figure()
+        ax=fig.add_subplot(projection="3d")
+        X=vecs_list[:,select1-1]
+        Y=vecs_list[:,select2-1]
+        Z=vecs_list[:,select3-1]
+        ax.scatter(X,Y,Z)
+        """
+        for i,(annot_x,annot_y,annot_z) in enumerate(zip(X,Y,Z)):
+            ax.annotate(df.index[i],((annot_x,annot_y,annot_z)))
+        """
+        ax.set_xlabel("X")
+        ax.set_ylabel("Y")
+        ax.set_zlabel("Z")
+        st.pyplot(fig)
 
-            fig=plt.figure()
-            ax=fig.add_subplot(projection="3d")
-            X_comp=model_svd.components_[select1-1]
-            Y_comp=model_svd.components_[select2-1]
-            Z_comp=model_svd.components_[select3-1]
-            ax.scatter(X_comp,Y_comp,Z_comp)
-            """
-            for i,(annot_x,annot_y,annot_z) in enumerate(zip(X_comp,Y_comp,Z_comp)):
-                plt.annotate(df.columns[i],((annot_x,annot_y,annot_z)))
-            """
-            ax.set_xlabel("X")
-            ax.set_ylabel("Y")
-            ax.set_zlabel("Z")
-            st.pyplot(fig)
+        fig=plt.figure()
+        ax=fig.add_subplot(projection="3d")
+        X_comp=model_svd.components_[select1-1]
+        Y_comp=model_svd.components_[select2-1]
+        Z_comp=model_svd.components_[select3-1]
+        ax.scatter(X_comp,Y_comp,Z_comp)
+        """
+        for i,(annot_x,annot_y,annot_z) in enumerate(zip(X_comp,Y_comp,Z_comp)):
+            plt.annotate(df.columns[i],((annot_x,annot_y,annot_z)))
+        """
+        ax.set_xlabel("X")
+        ax.set_ylabel("Y")
+        ax.set_zlabel("Z")
+        st.pyplot(fig)
 
-
+    sns.set(font="IPAexGothic")
     X=[]
     Y=[]
     fig,ax=plt.subplots()

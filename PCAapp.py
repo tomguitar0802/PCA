@@ -52,9 +52,9 @@ if Path is not None:
         Y=vecs_list[:,select2-1]
         Z=vecs_list[:,select3-1]
         ax.scatter(X,Y,Z)
-        ax.set_xlabel("X")
-        ax.set_ylabel("Y")
-        ax.set_zlabel("Z")
+        ax.set_xlabel("comp"+str(select1))
+        ax.set_ylabel("comp"+str(select2))
+        ax.set_zlabel("comp"+str(select3))
         st.pyplot(fig)
         fig=plt.figure()
         ax=fig.add_subplot(projection="3d")
@@ -62,9 +62,9 @@ if Path is not None:
         Y_comp=model_svd.components_[select2-1]
         Z_comp=model_svd.components_[select3-1]
         ax.scatter(X_comp,Y_comp,Z_comp)
-        ax.set_xlabel("X")
-        ax.set_ylabel("Y")
-        ax.set_zlabel("Z")
+        ax.set_xlabel("w"+str(select1))
+        ax.set_ylabel("w"+str(select2))
+        ax.set_zlabel("w"+str(select3))
         st.pyplot(fig)
     X=[]
     Y=[]

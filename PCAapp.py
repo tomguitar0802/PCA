@@ -6,11 +6,8 @@ import seaborn as sns
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
 sns.set(font='IPAexGothic')
-
 Path=st.sidebar.file_uploader('Excel')
-
 if Path is not None:
-    
     df=pd.read_excel(Path,index_col=0)
     N=st.sidebar.slider("主要素数",3,len(df.columns)-1,3,1)
     c_list=[]
@@ -19,12 +16,10 @@ if Path is not None:
         c_list.append("comp"+str(i+1))
         i_list.append("w"+str(i+1))
     MODE=st.sidebar.radio("MODE",["2D","3D"])
-
     model_svd=TruncatedSVD(n_components=N)
     vecs_list=model_svd.fit_transform(df)
     st.dataframe(pd.DataFrame(vecs_list,columns=c_list,index=df.index))
     st.dataframe(pd.DataFrame(model_svd.components_,columns=df.columns,index=i_list))
-
     if MODE=="2D":
         select1=st.sidebar.selectbox("x軸",np.arange(1,N+1),0)
         select2=st.sidebar.selectbox("y軸",np.arange(1,N+1),1)
@@ -37,7 +32,6 @@ if Path is not None:
         plt.xlabel("第一主成分")
         plt.ylabel("第二主成分")
         st.pyplot(fig)
-
         fig,ax=plt.subplots()
         X_comp=model_svd.components_[select1-1]
         Y_comp=model_svd.components_[select2-1]
@@ -47,7 +41,6 @@ if Path is not None:
         plt.xlabel("第一主成分の重み")
         plt.ylabel("第二主成分の重み")
         st.pyplot(fig)
-    
     if MODE=="3D":
         select1=st.sidebar.selectbox("x軸",np.arange(1,N+1),0)
         select2=st.sidebar.selectbox("y軸",np.arange(1,N+1),1)
@@ -58,30 +51,20 @@ if Path is not None:
         Y=vecs_list[:,select2-1]
         Z=vecs_list[:,select3-1]
         ax.scatter(X,Y,Z)
-        """
-        for i,(annot_x,annot_y,annot_z) in enumerate(zip(X,Y,Z)):
-            ax.annotate(df.index[i],((annot_x,annot_y,annot_z)))
-        """
         ax.set_xlabel("X")
         ax.set_ylabel("Y")
         ax.set_zlabel("Z")
         st.pyplot(fig)
-
         fig=plt.figure()
         ax=fig.add_subplot(projection="3d")
         X_comp=model_svd.components_[select1-1]
         Y_comp=model_svd.components_[select2-1]
         Z_comp=model_svd.components_[select3-1]
         ax.scatter(X_comp,Y_comp,Z_comp)
-        """
-        for i,(annot_x,annot_y,annot_z) in enumerate(zip(X_comp,Y_comp,Z_comp)):
-            plt.annotate(df.columns[i],((annot_x,annot_y,annot_z)))
-        """
         ax.set_xlabel("X")
         ax.set_ylabel("Y")
         ax.set_zlabel("Z")
         st.pyplot(fig)
-
     X=[]
     Y=[]
     fig,ax=plt.subplots()
@@ -91,7 +74,6 @@ if Path is not None:
         X.append(i)
         Y.append(100*sum(model_svd.explained_variance_ratio_))
         plt.annotate(100*round(sum(model_svd.explained_variance_ratio_),4),((i,100*sum(model_svd.explained_variance_ratio_))))
-
     X.append(df.shape[1])
     Y.append(100)
     plt.annotate(100,(df.shape[1],100))

@@ -2,12 +2,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.axes3d import Axes3D
-import japanize_matplotlib
 import seaborn as sns
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
 sns.set(font='IPAexGothic')
-japanize_matplotlib.japanize()
 
 Path=st.sidebar.file_uploader('Excel')
 

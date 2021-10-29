@@ -6,3 +6,5 @@ xlrd
 openpyxl
 japanize_matplotlib
 seaborn
+numpy
+Axes3D

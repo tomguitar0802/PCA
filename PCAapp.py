@@ -5,9 +5,7 @@ from mpl_toolkits.mplot3d.axes3d import Axes3D
 import seaborn as sns
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
-
-st.write(plt.rcParams["font.family"])
-plt.rcParams["font.family"]="MS Gothic"
+sns.set(font="IPAexGothic"))
 st.write(plt.rcParams["font.family"])
 Path=st.sidebar.file_uploader('Excel')
 if Path is not None:
@@ -44,7 +42,6 @@ if Path is not None:
         plt.xlabel("第一主成分の重み")
         plt.ylabel("第二主成分の重み")
         st.pyplot(fig)
-        st.write(plt.rcParams["font.family"])
     if MODE=="3D":
         select1=st.sidebar.selectbox("x軸",np.arange(1,N+1),0)
         select2=st.sidebar.selectbox("y軸",np.arange(1,N+1),1)

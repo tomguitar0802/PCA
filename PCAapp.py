@@ -7,7 +7,7 @@ from sklearn.decomposition import TruncatedSVD
 import streamlit as st
 
 st.write(plt.rcParams["font.family"])
-plt.rcParams["font.family"]="IPAexGothic"
+plt.rcParams["font.family"]="MS Gothic"
 st.write(plt.rcParams["font.family"])
 Path=st.sidebar.file_uploader('Excel')
 if Path is not None:

@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import japanize_matplotlib
 from mpl_toolkits.mplot3d.axes3d import Axes3D
+import japanize_matplotlib
 import seaborn as sns
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
@@ -11,6 +11,7 @@ sns.set(font="IPAexGothic")
 Path=st.sidebar.file_uploader('Excel')
 
 if Path is not None:
+    sns.set(font="IPAexGothic")
     df=pd.read_excel(Path,index_col=0)
     N=st.sidebar.slider("主要素数",3,len(df.columns)-1,3,1)
     c_list=[]

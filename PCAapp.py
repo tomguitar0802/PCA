@@ -6,7 +6,8 @@ import seaborn as sns
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
 sns.set(font="IPAexGothic")
-plt.rcParams["font.family"]="MS Gothic"
+
+plt.rcParams["font.family"]="IPAexGothic"
 Path=st.sidebar.file_uploader('Excel')
 if Path is not None:
     df=pd.read_excel(Path,index_col=0)

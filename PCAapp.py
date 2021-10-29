@@ -30,8 +30,8 @@ if Path is not None:
         plt.scatter(X,Y)
         for i,(annot_x,annot_y) in enumerate(zip(X,Y)):
             plt.annotate(df.index[i],((annot_x,annot_y)))
-        plt.xlabel("第一主成分")
-        plt.ylabel("第二主成分")
+        plt.xlabel("comp"+str(select1))
+        plt.ylabel("comp"+str(select2))
         st.pyplot(fig)
         fig,ax=plt.subplots()
         X_comp=model_svd.components_[select1-1]
@@ -39,8 +39,8 @@ if Path is not None:
         plt.scatter(X_comp,Y_comp)
         for i,(annot_x,annot_y) in enumerate(zip(X_comp,Y_comp)):
             plt.annotate(df.columns[i],((annot_x,annot_y)))
-        plt.xlabel("第一主成分の重み")
-        plt.ylabel("第二主成分の重み")
+        plt.xlabel("w"+str(select1))
+        plt.ylabel("w"+str(select2))
         st.pyplot(fig)
     if MODE=="3D":
         select1=st.sidebar.selectbox("x軸",np.arange(1,N+1),0)

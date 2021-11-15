@@ -24,14 +24,18 @@ if Path is not None:
     if MODE=="2D":
         select1=st.sidebar.selectbox("x軸",np.arange(1,N+1),0)
         select2=st.sidebar.selectbox("y軸",np.arange(1,N+1),1)
+        x_label1=st.sidebar.text_input('xラベル',"comp"+str(select1))
+        y_label1=st.sidebar.text_input('yラベル',"comp"+str(select2))
+        x_label2=st.sidebar.text_input('xラベル',"w"+str(select1))
+        y_label2=st.sidebar.text_input('yラベル',"w"+str(select2))
         fig,ax=plt.subplots()
         X=vecs_list[:,select1-1]
         Y=vecs_list[:,select2-1]
         plt.scatter(X,Y)
         for i,(annot_x,annot_y) in enumerate(zip(X,Y)):
             plt.annotate(df.index[i],((annot_x,annot_y)))
-        plt.xlabel("comp"+str(select1))
-        plt.ylabel("comp"+str(select2))
+        plt.xlabel(x_label1)
+        plt.ylabel(y_label1)
         st.pyplot(fig)
         fig,ax=plt.subplots()
         X_comp=model_svd.components_[select1-1]
@@ -39,22 +43,29 @@ if Path is not None:
         plt.scatter(X_comp,Y_comp)
         for i,(annot_x,annot_y) in enumerate(zip(X_comp,Y_comp)):
             plt.annotate(df.columns[i],((annot_x,annot_y)))
-        plt.xlabel("w"+str(select1))
-        plt.ylabel("w"+str(select2))
+        plt.xlabel(x_label2)
+        plt.ylabel(y_label2)
         st.pyplot(fig)
+        
     if MODE=="3D":
         select1=st.sidebar.selectbox("x軸",np.arange(1,N+1),0)
         select2=st.sidebar.selectbox("y軸",np.arange(1,N+1),1)
         select3=st.sidebar.selectbox("z軸",np.arange(1,N+1),2)
+        x_label1=st.sidebar.text_input('xラベル',"comp"+str(select1))
+        y_label1=st.sidebar.text_input('yラベル',"comp"+str(select2))
+        z_label1=st.sidebar.text_input('zラベル',"comp"+str(select3))
+        x_label2=st.sidebar.text_input('xラベル',"w"+str(select1))
+        y_label2=st.sidebar.text_input('yラベル',"w"+str(select2))
+        z_label2=st.sidebar.text_input('zラベル',"w"+str(select3))
         fig=plt.figure()
         ax=fig.add_subplot(projection="3d")
         X=vecs_list[:,select1-1]
         Y=vecs_list[:,select2-1]
         Z=vecs_list[:,select3-1]
         ax.scatter(X,Y,Z)
-        ax.set_xlabel("comp"+str(select1))
-        ax.set_ylabel("comp"+str(select2))
-        ax.set_zlabel("comp"+str(select3))
+        ax.set_xlabel(x_label1)
+        ax.set_ylabel(y_label1)
+        ax.set_zlabel(z_label1)
         st.pyplot(fig)
         fig=plt.figure()
         ax=fig.add_subplot(projection="3d")
@@ -62,10 +73,13 @@ if Path is not None:
         Y_comp=model_svd.components_[select2-1]
         Z_comp=model_svd.components_[select3-1]
         ax.scatter(X_comp,Y_comp,Z_comp)
-        ax.set_xlabel("w"+str(select1))
-        ax.set_ylabel("w"+str(select2))
-        ax.set_zlabel("w"+str(select3))
+        ax.set_xlabel(x_label2)
+        ax.set_ylabel(y_label2)
+        ax.set_zlabel(z_label2)
         st.pyplot(fig)
+        
+    x_label3=st.sidebar.text_input("xラベル","Number of Component")
+    y_label3=st.sidebar.text_input("yラベル","Contribution(%)")
     X=[]
     Y=[]
     fig,ax=plt.subplots()
@@ -79,6 +93,6 @@ if Path is not None:
     Y.append(100)
     plt.annotate(100,(df.shape[1],100))
     plt.plot(X,Y,"o-")
-    plt.xlabel("主成分の数")
-    plt.ylabel("情報量(%)")
+    plt.xlabel(x_label3)
+    plt.ylabel(y_label3)
     st.pyplot(fig)

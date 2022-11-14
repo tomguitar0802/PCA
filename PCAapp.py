@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.axes3d import Axes3D
 import seaborn as sns
+import sklearn
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
 sns.set(font="IPAexGothic")

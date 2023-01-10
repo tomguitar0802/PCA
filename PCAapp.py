@@ -4,12 +4,22 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.axes3d import Axes3D
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
-
-st.write("寄与度が表示できなくなりました。僕の環境では表示できるので必要があれば連絡ください。")
+st.write("PCA前のデータを加工する機能を実装しました。")
+st.write("Originは無加工、Standardizeは平均0標準偏差1、Normalizeは最大1最小0です。")
 Path=st.sidebar.file_uploader('Excel')
 if Path is not None:
     df=pd.read_excel(Path,index_col=0)
+    Processing=st.sidebar.radio("Processing",["Origin","Standardize(µ=0,σ=1)","Normalize(max=1,min=0)"])
     N=st.sidebar.slider("主要素数",3,len(df.columns)-1,3,1)
+    st.write("Raw Data")
+    st.write(df)
+    if Processing=="Standardize(µ=0,σ=1)":
+        df=df.apply(lambda x:(x-x.mean())/x.std(),axis=1)
+    if Processing=="Normalize(max=1,min=0)":
+        df=df.apply(lambda x:(x-x.min())/(x.max()-x.min()),axis=1)
+    st.write("Processed Data")
+    st.write(df)
+    
     c_list=[]
     i_list=[]
     for i in range(N):
@@ -77,6 +87,7 @@ if Path is not None:
         ax.set_zlabel(z_label2)
         st.pyplot(fig)
         
+    st.write("※寄与度が表示できなくなりました。僕の環境では表示できるので必要があれば連絡ください。")
     x_label3=st.sidebar.text_input("xラベル","Number of Component")
     y_label3=st.sidebar.text_input("yラベル","Contribution(%)")
     X=[]

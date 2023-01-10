@@ -2,11 +2,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.axes3d import Axes3D
-import seaborn as sns
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
-sns.set(font="IPAexGothic")
-st.write(plt.rcParams["font.family"])
+
+st.write("寄与度が表示できなくなりました。僕の環境では表示できるので必要があれば連絡ください。")
 Path=st.sidebar.file_uploader('Excel')
 if Path is not None:
     df=pd.read_excel(Path,index_col=0)

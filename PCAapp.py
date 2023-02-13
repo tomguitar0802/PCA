@@ -21,7 +21,7 @@ if Processing=="Origin":
 else:
     if Processing=="Standardize(µ=0,σ=1)":
         df=df.apply(lambda x:(x-x.mean())/x.std(),axis=1)
-    else":
+    else:
         df=df.apply(lambda x:(x-x.min())/(x.max()-x.min()),axis=1)
     st.write("Processed Data")
     st.write(df)

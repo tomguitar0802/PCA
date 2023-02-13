@@ -14,7 +14,7 @@ else:
     df=pd.read_excel(Path,index_col=0)
     
 Processing=st.sidebar.radio("Processing",["Origin","Standardize(µ=0,σ=1)","Normalize(max=1,min=0)"])
-N=st.sidebar.slider("主要素数",3,len(df.columns)-1,3,1)
+N=st.sidebar.slider("Number of Component",3,len(df.columns)-1,3,1)
 select1=st.sidebar.selectbox("x axis",np.arange(1,N+1),0)
 select2=st.sidebar.selectbox("y axis",np.arange(1,N+1),1)
 x_label1=st.sidebar.text_input('x label',"comp"+str(select1))

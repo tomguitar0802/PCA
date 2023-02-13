@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
+plt.rcParams["font.family"]="MS Gothic"
 
 Path=st.sidebar.file_uploader('Excel')
 if Path is not None:

@@ -4,11 +4,9 @@ import matplotlib.pyplot as plt
 from sklearn.decomposition import TruncatedSVD
 import streamlit as st
 
-
 Path=st.sidebar.file_uploader('Excel')
 if Path is not None:
-    df=pd.read_excel(Path,index_col=0)
-    
+    df=pd.read_excel(Path,index_col=0) 
 else:
     Path="score.xlsx"
     df=pd.read_excel(Path,index_col=0)
@@ -17,12 +15,16 @@ Processing=st.sidebar.radio("Processing",["Origin","Standardize(µ=0,σ=1)","Nor
 N=st.sidebar.slider("主要素数",3,len(df.columns)-1,3,1)
 st.write("Raw Data")
 st.write(df)
-if Processing=="Standardize(µ=0,σ=1)":
-    df=df.apply(lambda x:(x-x.mean())/x.std(),axis=1)
-if Processing=="Normalize(max=1,min=0)":
-    df=df.apply(lambda x:(x-x.min())/(x.max()-x.min()),axis=1)
-st.write("Processed Data")
-st.write(df)
+
+if Processing=="Origin":
+    df=df
+else:
+    if Processing=="Standardize(µ=0,σ=1)":
+        df=df.apply(lambda x:(x-x.mean())/x.std(),axis=1)
+    else":
+        df=df.apply(lambda x:(x-x.min())/(x.max()-x.min()),axis=1)
+    st.write("Processed Data")
+    st.write(df)
     
 c_list=[]
 i_list=[]
@@ -60,21 +62,3 @@ plt.xlabel(x_label2)
 plt.ylabel(y_label2)
 st.pyplot(fig)
         
-x_label3=st.sidebar.text_input("xラベル","Number of Component")
-y_label3=st.sidebar.text_input("yラベル","Contribution(%)")
-X=[]
-Y=[]
-fig,ax=plt.subplots()
-for i in range(df.shape[1]):
-    model_svd=TruncatedSVD(n_components=i)
-    vecs_list=model_svd.fit_transform(df)
-    X.append(i)
-    Y.append(100*sum(model_svd.explained_variance_ratio_))
-    plt.annotate(100*round(sum(model_svd.explained_variance_ratio_),4),((i,100*sum(model_svd.explained_variance_ratio_))))
-X.append(df.shape[1])
-Y.append(100)
-plt.annotate(100,(df.shape[1],100))
-plt.plot(X,Y,"o-")
-plt.xlabel(x_label3)
-plt.ylabel(y_label3)
-st.pyplot(fig)

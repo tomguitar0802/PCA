@@ -30,6 +30,7 @@ else:
         df=df.apply(lambda x:(x-x.mean())/x.std(),axis=1)
     else:
         df=df.apply(lambda x:(x-x.min())/(x.max()-x.min()),axis=1)
+    df=df.fillna(0)
     st.write("Processed Data")
     st.write(df)
     
